@@ -7,7 +7,7 @@ export const createStage = () =>
         // for each row, create Array inside with cells
         // 0 represents a clean cell, nothing inside
         // ready for mapping 
-        new Array(STAGE_WIDTH).fill(0, 'clear')
+        new Array(STAGE_WIDTH).fill([0, 'clear'])
     )
 
 

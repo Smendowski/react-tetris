@@ -4,7 +4,7 @@ import { BLOCKS } from '../blocks';
 
 
 const Cell = ({ type }) => (
-    <StyledCell type={'0'} color={BLOCKS['0'].color}/>
+    <StyledCell type={type} color={BLOCKS[type].color}/>
 )
 
 export default Cell;

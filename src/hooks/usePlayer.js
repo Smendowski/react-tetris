@@ -1,14 +1,14 @@
 // useState and useCallback - standart React Hooks
 import { useState, useCallback } from 'react';
-import { randomBlock } from '../blocks';
+import { BLOCKS, randomBlock } from '../blocks';
 import { STAGE_WIDTH } from '../gameParams';
 
 export const usePlayer = () =>{
     const [player, setPlayer ] = useState({
         position: {x:0, y:0},
-        block: randomBlock().shape,
+        block: BLOCKS[0].shape,
         collided: false,
-    })
+    });
     // Longest form:
     // const playerState = useState();
     // const player = playerState[0];

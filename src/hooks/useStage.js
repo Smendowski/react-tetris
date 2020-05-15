@@ -11,8 +11,8 @@ export const useStage = (player, resetPlayer) => {
         const updateStage = previousStage => {
             // Clear the stage from the previous render
             const newStage = previousStage.map(row => 
-                row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)) 
-                );
+                row.map(cell => (cell[1] === 'clear' ? [0, 'clear'] : cell)), 
+            );
 
             // Draw the block, draw new stage in this render
             // Looping trough the block structure, and checking
@@ -22,15 +22,17 @@ export const useStage = (player, resetPlayer) => {
                     if (value !== 0){
                         newStage[y + player.position.y][x + player.position.x] = [
                             value,
-                            `${player.collided ? 'merged' : 'clear'}`
-                        ]
+                            `${player.collided ? 'merged' : 'clear'}`,
+                        ];
                     }
-                })
+                });
             });
+
+            return newStage;
         };
 
         setStage(previous => updateStage(previous))
-    }, [])
+    }, [player.collided, player.position.x, player.position.y, player.block]);
 
     return [stage, setStage];
-}
+};
