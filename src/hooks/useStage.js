@@ -32,10 +32,10 @@ export const useStage = (player, resetPlayer) => {
         };
 
         setStage(previous => updateStage(previous))
-    }, [player]
+    }, [player]);
     //[player]
     // we have to specify it inside, cause we are using it as dependencies
-    );
+    
 
     return [stage, setStage];
 };
