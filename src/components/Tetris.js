@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Stage Creator
-import { createStage } from '../gameParams';
+import { createStage, detectCollision } from '../gameParams';
 
 // Styles
 import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
@@ -18,7 +18,6 @@ import StartButton from './StartButton';
 
 
 const Tetris = () => {
-    console.log(createStage());
 
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
@@ -28,12 +27,13 @@ const Tetris = () => {
     // resetPlayer, needed to be accessed by useStage
     const [stage, setStage] = useStage(player, resetPlayer);
 
-    console.log('re-render'); 
     
     // function takes parameter - direction
-    const movePlayer = direction => {
-        updatePlayerPosition({x:direction, y:0});
-
+    // Responsible to move player left or right
+    const movePlayer = (direction) => {
+        if(!detectCollision(player, stage, {x: direction, y: 0})){
+            updatePlayerPosition({x:direction, y:0});
+        }
     }
 
     const startGame = () => {

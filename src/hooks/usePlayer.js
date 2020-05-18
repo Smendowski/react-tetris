@@ -16,16 +16,17 @@ export const usePlayer = () =>{
 
     const updatePlayerPosition = ({x, y, collided}) => {
         setPlayer(previous => ({
-            ... previous,
+            ...previous,
             position: {x: (previous.position.x += x), y: (previous.position.y += y)},
             collided,
         }))
     }
 
+    // Starting player's block position
     const resetPlayer = useCallback(() => {
         setPlayer({
             // Top Middle positioning
-            position: {x: STAGE_WIDTH / 2 -2, y: 0},
+            position: {x: STAGE_WIDTH / 2 - 2, y: 0},
             block: randomBlock().shape,
             collided: false,
         })

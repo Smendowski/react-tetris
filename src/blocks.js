@@ -57,7 +57,7 @@ export const BLOCKS = {
 
     Z: {
         shape: [
-            ['Z', 'Z', 'Z'],
+            ['Z', 'Z', 0],
             [0, 'Z', 'Z'],
             [0, 0, 0]
         ],
@@ -67,7 +67,7 @@ export const BLOCKS = {
 
 export const randomBlock = () => {
     const allowedOptions = 'IJLOSTZ';
-    const randomChoice = allowedOptions[Math.floor(Math.random(0) * allowedOptions.length)];
+    const randomChoice = allowedOptions[Math.floor(Math.random() * allowedOptions.length)];
     
     return BLOCKS[randomChoice];
 }

@@ -28,11 +28,17 @@ export const useStage = (player, resetPlayer) => {
                 });
             });
 
+            // Check colision before returning new  Stage
+            if(player.collided){
+                resetPlayer();
+            }
+
+
             return newStage;
         };
 
         setStage(previous => updateStage(previous))
-    }, [player]);
+    }, [player, resetPlayer]);
     //[player]
     // we have to specify it inside, cause we are using it as dependencies
     
