@@ -27,6 +27,7 @@ const Tetris = () => {
     // resetPlayer, needed to be accessed by useStage
     const [stage, setStage] = useStage(player, resetPlayer);
 
+    console.log('re-render');
     
     // function takes parameter - direction
     // Responsible to move player left or right
@@ -40,11 +41,20 @@ const Tetris = () => {
         // Reset 
         setStage(createStage());
         resetPlayer();
+        setGameOver(false);
     }
 
     const drop = () => {
-        // Droping element down, we increase y axisi coordinate by one
-        updatePlayerPosition({x:0, y:1, collided: false})
+        if(!detectCollision(player, stage, {x: 0, y:1})){
+            // Droping element down, we increase y axisi coordinate by one
+            updatePlayerPosition({x:0, y:1, collided: false})
+        } else {
+            if(player.position.y < 1){
+                setGameOver(true);
+                setDropTime(null);
+            }
+            updatePlayerPosition({ x:0, y:0, collided: true});
+        }
     }
 
 
@@ -71,7 +81,7 @@ const Tetris = () => {
 
 
     return (
-        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={event => move(event)}>
+        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)}>
             <StyledTetris>
             <Stage stage={stage}/>
             <aside>

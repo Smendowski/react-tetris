@@ -67,7 +67,7 @@ export const BLOCKS = {
 
 export const randomBlock = () => {
     const allowedOptions = 'IJLOSTZ';
-    const randomChoice = allowedOptions[Math.floor(Math.random() * allowedOptions.length)];
+    const randomChoice = allowedOptions[Math.floor(Math.random(0) * allowedOptions.length)];
     
     return BLOCKS[randomChoice];
 }
