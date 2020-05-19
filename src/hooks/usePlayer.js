@@ -2,7 +2,7 @@
 // useState and useCallback - standart React Hooks
 import { useState, useCallback } from 'react';
 import { BLOCKS, randomBlock } from '../blocks';
-import { STAGE_WIDTH } from '../gameParams';
+import { STAGE_WIDTH, detectCollision } from '../gameParams';
 
 export const usePlayer = () =>{
     const [player, setPlayer ] = useState({
@@ -29,6 +29,22 @@ export const usePlayer = () =>{
     const rotatePlayer = (stage, direction) => {
         const playerClone = JSON.parse(JSON.stringify(player));
         playerClone.block = rotate(playerClone.block, direction);
+
+        // Basic checker - if we collided, we have to
+        // cancel rotation process and by dint of offset,
+        // separate block and collided object with space
+        const position = playerClone.position.x;
+        let offset = 1;
+        while(detectCollision(playerClone, stage, {x: 0, y:0})){
+            playerClone.position.x += offset;
+            offset = -(offset + (offset > 0 ? 1 : -1));
+            if (offset > playerClone.block[0].length){
+                // If block after rotation 
+                rotate(playerClone.tetromino, -direction);
+                playerClone.position.x = position;
+                return;
+            }
+        }
         setPlayer(playerClone);
     }
 
