@@ -9,6 +9,7 @@ import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
 // Custom Hooks
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from  '../hooks/useStage';
+import { useInterval } from '../hooks/useInterval';
 
 
 // Components
@@ -40,6 +41,7 @@ const Tetris = () => {
     const startGame = () => {
         // Reset 
         setStage(createStage());
+        setDropTime(1000);
         resetPlayer();
         setGameOver(false);
     }
@@ -57,10 +59,21 @@ const Tetris = () => {
         }
     }
 
-
+    // Stop interval when palyer presses downkey
     const dropPlayer = () => {
+        setDropTime(null);
         drop();
     }
+
+    // Start interval again after user release downkey
+    const keyUp = ({keyCode}) => {
+        if (!gameOver){
+            if (keyCode === 40) {
+                setDropTime(1000);
+            }
+        }
+    }
+    
 
     const move = ({ keyCode }) => {
         // We dont want to move if the game is over
@@ -82,9 +95,13 @@ const Tetris = () => {
 
     }
 
+    useInterval(() => {
+        drop();
+    }, dropTime)
+
 
     return (
-        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)}>
+        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
             <StyledTetris>
             <Stage stage={stage}/>
             <aside>
