@@ -23,7 +23,7 @@ const Tetris = () => {
     const [gameOver, setGameOver] = useState(false);
 
     // Custom Hook usage
-    const [player, updatePlayerPosition, resetPlayer] = usePlayer();
+    const [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
     // resetPlayer, needed to be accessed by useStage
     const [stage, setStage] = useStage(player, resetPlayer);
 
@@ -74,6 +74,9 @@ const Tetris = () => {
             // Move block down - dropDown    
             } else if (keyCode === 40) {
                 dropPlayer();
+            } else if (keyCode === 38) {
+                // Adding only rightwise rotation. top arrow
+                rotatePlayer(stage, 1);
             }
         }
 
