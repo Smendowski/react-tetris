@@ -7,4 +7,5 @@ const Cell = ({ type }) => (
     <StyledCell type={type} color={BLOCKS[type].color}/>
 )
 
-export default Cell;
+export default React.memo(Cell);
+// React memo - optimization, we rerendder if cell has changed :)
