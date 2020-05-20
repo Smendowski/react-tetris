@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-
+import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
 // Stage Creator
 import { createStage, detectCollision } from '../gameParams';
 
 // Styles
-import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
+
 
 // Custom Hooks
 import { usePlayer } from '../hooks/usePlayer';
