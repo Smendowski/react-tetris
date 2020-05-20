@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledStartButton = styled.button`
+    $button-background: #92CD41;
     box-sizing: border-box;
     margin: 0 0 20x 0;
     padding: 20px;

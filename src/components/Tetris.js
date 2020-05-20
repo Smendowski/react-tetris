@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
+
+// Styles
 import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
+
 // Stage Creator
 import { createStage, detectCollision } from '../gameParams';
 
-// Styles
 
 
 // Custom Hooks
@@ -17,7 +20,6 @@ import { useGameStats } from '../hooks/useGameStats'
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
-
 
 const Tetris = () => {
 
@@ -113,22 +115,25 @@ const Tetris = () => {
 
 
     return (
-        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
-            <StyledTetris>
-            <Stage stage={stage}/>
-            <aside>
-                {gameOver ? (
-                    <Display gameOver={gameOver} text="Game Over" />
-                ) : (
-                <div>
-                    <Display text={`Score: ${score}`}/>
-                    <Display text={`Rows: ${rows}`}/>
-                    <Display text={`Level: ${level}`}/>
-                </div>)}
-                <StartButton callback={startGame}/>
-            </aside>
-            </StyledTetris>
-        </StyledTetrisContainer>
+        
+            <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
+                <StyledTetris>
+                            <Stage stage={stage}/>
+                        
+                        <aside>
+                        {gameOver ? (
+                            <Display gameOver={gameOver} text="Game Over" />
+                        ) : (
+                        <div>
+                            <Display text={`Score: ${score}`}/>
+                            <Display text={`Rows: ${rows}`}/>
+                            <Display text={`Level: ${level}`}/>
+                        </div>)}
+                        <StartButton callback={startGame}/>
+                    </aside>
+                      
+                </StyledTetris>
+            </StyledTetrisContainer>
     );
 };
 
