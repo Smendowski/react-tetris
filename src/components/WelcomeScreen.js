@@ -1,10 +1,11 @@
 import React from 'react';
+import ContinueButton from './ContinueButton';
 
 
-const WelcomeScreen  = () => {
+const WelcomeScreen  = props => {
 
     return(
-        <h1>HELLOO</h1>
+        <ContinueButton continue = {props.continue}/>
     )
 }
 
