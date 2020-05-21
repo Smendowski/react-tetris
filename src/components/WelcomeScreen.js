@@ -8,15 +8,14 @@ const WelcomeScreen  = props => {
         <StyledWelcomeContainer>
             <StyledWelcomeScreen>
                 <header>
-                    
+                    <div className = "logoContainer"/>
                 </header>
-                
                 <section>
                     <ContinueButton continue = {props.continue}/>
                 </section>
 
                 <footer>
-
+                    FOOTER APKI
                 </footer>
 
             </StyledWelcomeScreen>
