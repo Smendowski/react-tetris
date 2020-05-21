@@ -25,7 +25,7 @@ class App extends Component {
         {this.state.isEmptyState && 
           <WelcomeScreen continue = {this.ContinueVisiting} />
           }
-          
+
         {this.state.isContinueState  && <Tetris />}
       </div>
     )
