@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // Styles
@@ -34,6 +34,21 @@ const Tetris = () => {
         useGameStats(rowsCleared);
 
     console.log('re-render');
+
+
+    
+    // More like ComponentDidMount() / ComponentDidUpdate() in class based component
+    useEffect(() => {
+        localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
+        localStorage.setItem("stageStored", JSON.stringify(stage));
+        localStorage.setItem("playerStored", JSON.stringify(stage));
+        localStorage.setItem("rowsClearedStored", JSON.stringify(rowsCleared));
+        localStorage.setItem("scoreStored", JSON.stringify(score));
+        localStorage.setItem("rowsStored", JSON.stringify(rows));
+        localStorage.setItem("levelStored", JSON.stringify(level));
+    }, [dropTime, stage, player, rowsCleared, score, rows, level])
+    // JSON.parse(localStorage.getItem("playerStored")); <- get data outside
+
     
     // function takes parameter - direction
     // Responsible to move player left or right
