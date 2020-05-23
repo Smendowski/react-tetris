@@ -8,8 +8,9 @@ class App extends Component {
     this.state = { 
       isEmptyState: true,
       isContinueState: false,
-      isLoadLocalStorage: false,
-      isLocalStorageContain: JSON.parse(localStorage.getItem("stageStored"))!== null ? true : false}
+      // change to true if want to load from local storage - >
+      isLoadLocalStorage: true,
+      }
   }
 
   ContinueVisiting = () => {
@@ -18,13 +19,11 @@ class App extends Component {
       isEmptyState: false,
       isContinueState: true
     })
-    localStorage.clear();
   }
 
   LoadLocalStorage = () => {
     this.setState({
-      isLoadLocalStorage: true,
-      isContinueState: true,
+      isLoadLocalStorage: true
     })
   }
 

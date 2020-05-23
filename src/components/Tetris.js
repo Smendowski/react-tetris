@@ -35,19 +35,15 @@ const Tetris = ({ loadLocalStorage }) => {
 
     console.log('re-render');
 
+    // Common Patter method to write to local storage
+    const updateLocalStorage = (key, value) => {
+        JSON.parse(localStorage.setItem(key, value));
+    }
 
-    
     // More like ComponentDidMount() / ComponentDidUpdate() in class based component
-    useEffect(() => {
-        localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
-        localStorage.setItem("stageStored", JSON.stringify(stage));
-        localStorage.setItem("playerStored", JSON.stringify(player));
-        localStorage.setItem("rowsClearedStored", JSON.stringify(rowsCleared));
-        localStorage.setItem("scoreStored", JSON.stringify(score));
-        localStorage.setItem("rowsStored", JSON.stringify(rows));
-        localStorage.setItem("levelStored", JSON.stringify(level));
-        localStorage.setItem("gameOverStored", JSON.stringify(gameOver));
-    }, [dropTime, stage, player, rowsCleared, score, rows, level, gameOver])
+    //useEffect(() => {
+    //    
+    //}, [dropTime, stage, player, rowsCleared, score, rows, level, gameOver])
     // JSON.parse(localStorage.getItem("playerStored")); <- get data outside
 
     
@@ -61,17 +57,17 @@ const Tetris = ({ loadLocalStorage }) => {
 
     const startGame = () => {
         console.log(loadLocalStorage);
-        if (loadLocalStorage && !gameOver){
-            setDropTime(JSON.parse(localStorage.getItem("dropTimeStored")));
+        if (loadLocalStorage){
             setStage(JSON.parse(localStorage.getItem("stageStored")));
+            setDropTime(JSON.parse(localStorage.getItem("dropTimeStored")));
             player = JSON.parse(localStorage.getItem("playerStored"));
-            rowsCleared = JSON.parse(localStorage.getItem("rowsClearedStored"));
+            setGameOver(JSON.parse(localStorage.getItem("gameOverStored")));
             setScore(JSON.parse(localStorage.getItem("scoreStored")));
             setRows(JSON.parse(localStorage.getItem("rowsStored")));
             setLevel(JSON.parse(localStorage.getItem("levelStored")));
-            setGameOver(JSON.parse(localStorage.getItem("gameOverStored")));
+            rowsCleared = JSON.parse(localStorage.getItem("rowsClearedStored"));
         } else {
-            localStorage.clear();
+            //localStorage.clear();
             setStage(createStage());
             setDropTime(1000);
             resetPlayer();
@@ -139,30 +135,42 @@ const Tetris = ({ loadLocalStorage }) => {
 
     useInterval(() => {
         drop();
-        
+        //updateLocalStorage("dropTimeStored", dropTime);
+        //updateLocalStorage("stageStored", stage);
+        //updateLocalStorage("playerStored", player);
+        //updateLocalStorage("rowsClearedStored", rowsCleared);
+        //updateLocalStorage("scoreStored", score);
+        //updateLocalStorage("rowsStored", rows);
+        //updateLocalStorage("levelStored", level);
+        //updateLocalStorage("gameOverStored", gameOver);
+        localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
+        localStorage.setItem("stageStored", JSON.stringify(stage));
+        localStorage.setItem("playerStored", JSON.stringify(player));
+        localStorage.setItem("rowsClearedStored", JSON.stringify(rowsCleared));
+        localStorage.setItem("scoreStored", JSON.stringify(score));
+        localStorage.setItem("rowsStored", JSON.stringify(rows));
+        localStorage.setItem("levelStored", JSON.stringify(level));
+        localStorage.setItem("gameOverStored", JSON.stringify(gameOver));
     }, dropTime)
 
     return (
-        
-            <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
-                <StyledTetris>
-                            <Stage stage={stage}/>
-                        
-                        <aside>
-                        {gameOver ? (
-                            <Display gameOver={gameOver} text="Game Over" />
-                        ) : (
-                        <div>
-                            <Display text={`Score: ${score}`}/>
-                            <Display text={`Rows: ${rows}`}/>
-                            <Display text={`Level: ${level}`}/>
-                        </div>)}
-                        <StartButton callback={startGame}/>
-                    </aside>
-                </StyledTetris>
-            </StyledTetrisContainer>
+        <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
+            <StyledTetris>
+                <Stage stage={stage}/>
+                <aside>
+                    {gameOver ? (
+                        <Display gameOver={gameOver} text="Game Over" />
+                    ) : (
+                    <div>
+                        <Display text={`Score: ${score}`}/>
+                        <Display text={`Rows: ${rows}`}/>
+                        <Display text={`Level: ${level}`}/>
+                    </div>)}
+                    <StartButton callback={startGame}/>
+                </aside>
+            </StyledTetris>
+        </StyledTetrisContainer>
     );
 };
-
 
 export default Tetris;
