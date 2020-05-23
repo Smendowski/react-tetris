@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Tetris from './components/Tetris';
 import WelcomeScreen from './components/WelcomeScreen';
-import ContinueButton from './components/ContinueButton';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = { 
       isEmptyState: true,
-      isContinueState: false }
+      isContinueState: false,
+      isLoadLocalStorage: false,
+      isLocalStorageContain: JSON.parse(localStorage.getItem("stageStored"))!== null ? true : false}
   }
 
   ContinueVisiting = () => {
@@ -17,16 +18,25 @@ class App extends Component {
       isEmptyState: false,
       isContinueState: true
     })
+    localStorage.clear();
+  }
+
+  LoadLocalStorage = () => {
+    this.setState({
+      isLoadLocalStorage: true,
+      isContinueState: true,
+    })
   }
 
   render() {
     return (
-      <div>
+      <div>  
         {this.state.isEmptyState && 
           <WelcomeScreen continue = {this.ContinueVisiting} />
-          }
+          }  
 
-        {this.state.isContinueState  && <Tetris />}
+        {this.state.isContinueState  && <Tetris loadLocalStorage
+          = { this.state.isLoadLocalStorage }/>}
       </div>
     )
   }

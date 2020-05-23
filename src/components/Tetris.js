@@ -21,15 +21,15 @@ import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 
-const Tetris = () => {
+const Tetris = ({ loadLocalStorage }) => {
 
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
 
     // Custom Hook usage
-    const [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
+    let [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
     // resetPlayer, needed to be accessed by useStage
-    const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+    let [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
     const [score, setScore, rows, setRows, level, setLevel] = 
         useGameStats(rowsCleared);
 
@@ -41,12 +41,13 @@ const Tetris = () => {
     useEffect(() => {
         localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
         localStorage.setItem("stageStored", JSON.stringify(stage));
-        localStorage.setItem("playerStored", JSON.stringify(stage));
+        localStorage.setItem("playerStored", JSON.stringify(player));
         localStorage.setItem("rowsClearedStored", JSON.stringify(rowsCleared));
         localStorage.setItem("scoreStored", JSON.stringify(score));
         localStorage.setItem("rowsStored", JSON.stringify(rows));
         localStorage.setItem("levelStored", JSON.stringify(level));
-    }, [dropTime, stage, player, rowsCleared, score, rows, level])
+        localStorage.setItem("gameOverStored", JSON.stringify(gameOver));
+    }, [dropTime, stage, player, rowsCleared, score, rows, level, gameOver])
     // JSON.parse(localStorage.getItem("playerStored")); <- get data outside
 
     
@@ -59,14 +60,26 @@ const Tetris = () => {
     }
 
     const startGame = () => {
-        // Reset 
-        setStage(createStage());
-        setDropTime(1000);
-        resetPlayer();
-        setGameOver(false);
-        setScore(0);
-        setRows(0);
-        setLevel(0);
+        console.log(loadLocalStorage);
+        if (loadLocalStorage && !gameOver){
+            setDropTime(JSON.parse(localStorage.getItem("dropTimeStored")));
+            setStage(JSON.parse(localStorage.getItem("stageStored")));
+            player = JSON.parse(localStorage.getItem("playerStored"));
+            rowsCleared = JSON.parse(localStorage.getItem("rowsClearedStored"));
+            setScore(JSON.parse(localStorage.getItem("scoreStored")));
+            setRows(JSON.parse(localStorage.getItem("rowsStored")));
+            setLevel(JSON.parse(localStorage.getItem("levelStored")));
+            setGameOver(JSON.parse(localStorage.getItem("gameOverStored")));
+        } else {
+            localStorage.clear();
+            setStage(createStage());
+            setDropTime(1000);
+            resetPlayer();
+            setGameOver(false);
+            setScore(0);
+            setRows(0);
+            setLevel(0);
+        }        
     }
 
     const drop = () => {
@@ -126,8 +139,8 @@ const Tetris = () => {
 
     useInterval(() => {
         drop();
+        
     }, dropTime)
-
 
     return (
         
@@ -146,7 +159,6 @@ const Tetris = () => {
                         </div>)}
                         <StartButton callback={startGame}/>
                     </aside>
-                      
                 </StyledTetris>
             </StyledTetrisContainer>
     );
