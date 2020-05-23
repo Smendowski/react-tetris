@@ -7,14 +7,11 @@ import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
 // Stage Creator
 import { createStage, detectCollision } from '../gameParams';
 
-
-
 // Custom Hooks
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from  '../hooks/useStage';
 import { useInterval } from '../hooks/useInterval';
 import { useGameStats } from '../hooks/useGameStats'
-
 
 // Components
 import Stage from './Stage';
@@ -27,28 +24,13 @@ const Tetris = ({ loadLocalStorage }) => {
     const [gameOver, setGameOver] = useState(false);
 
     // Custom Hook usage
-    let [player, updatePlayerPosition, resetPlayer, rotatePlayer] = usePlayer();
+    let [player, updatePlayerPosition, resetPlayer, rotatePlayer, setPlayer] = usePlayer();
     // resetPlayer, needed to be accessed by useStage
     let [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
     const [score, setScore, rows, setRows, level, setLevel] = 
         useGameStats(rowsCleared);
 
-    console.log('re-render');
 
-    // Common Patter method to write to local storage
-    const updateLocalStorage = (key, value) => {
-        JSON.parse(localStorage.setItem(key, value));
-    }
-
-    // More like ComponentDidMount() / ComponentDidUpdate() in class based component
-    //useEffect(() => {
-    //    
-    //}, [dropTime, stage, player, rowsCleared, score, rows, level, gameOver])
-    // JSON.parse(localStorage.getItem("playerStored")); <- get data outside
-
-    
-    // function takes parameter - direction
-    // Responsible to move player left or right
     const movePlayer = (direction) => {
         if(!detectCollision(player, stage, {x: direction, y: 0})){
             updatePlayerPosition({x:direction, y:0});
@@ -57,17 +39,18 @@ const Tetris = ({ loadLocalStorage }) => {
 
     const startGame = () => {
         console.log(loadLocalStorage);
-        if (loadLocalStorage){
+        if (loadLocalStorage && !gameOver){
             setStage(JSON.parse(localStorage.getItem("stageStored")));
             setDropTime(JSON.parse(localStorage.getItem("dropTimeStored")));
-            player = JSON.parse(localStorage.getItem("playerStored"));
+            setPlayer(JSON.parse(localStorage.getItem("playerStored")));
             setGameOver(JSON.parse(localStorage.getItem("gameOverStored")));
             setScore(JSON.parse(localStorage.getItem("scoreStored")));
             setRows(JSON.parse(localStorage.getItem("rowsStored")));
             setLevel(JSON.parse(localStorage.getItem("levelStored")));
             rowsCleared = JSON.parse(localStorage.getItem("rowsClearedStored"));
+            console.log(player.block);
         } else {
-            //localStorage.clear();
+            localStorage.clear();
             setStage(createStage());
             setDropTime(1000);
             resetPlayer();
@@ -101,6 +84,7 @@ const Tetris = ({ loadLocalStorage }) => {
     const dropPlayer = () => {
         setDropTime(null);
         drop();
+        console.log(player.block);
     }
 
     // Start interval again after user release downkey
@@ -135,14 +119,6 @@ const Tetris = ({ loadLocalStorage }) => {
 
     useInterval(() => {
         drop();
-        //updateLocalStorage("dropTimeStored", dropTime);
-        //updateLocalStorage("stageStored", stage);
-        //updateLocalStorage("playerStored", player);
-        //updateLocalStorage("rowsClearedStored", rowsCleared);
-        //updateLocalStorage("scoreStored", score);
-        //updateLocalStorage("rowsStored", rows);
-        //updateLocalStorage("levelStored", level);
-        //updateLocalStorage("gameOverStored", gameOver);
         localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
         localStorage.setItem("stageStored", JSON.stringify(stage));
         localStorage.setItem("playerStored", JSON.stringify(player));
