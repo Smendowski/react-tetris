@@ -5,50 +5,33 @@ export const StyledWelcomeContainer = styled.div`
     width: 100vw;
     height: 100vh;
     background: black;
-    background-size: cover;
 `;
 
 export const StyledWelcomeScreen = styled.div`
-    display: block;
-    float: left;
-    width: 100vw;
-    height: 100vh;
 
     header{
         position: fixed;
         width: 100%;
-        height: 300px;
+        height: 30vh;
     }
 
-    article{
-        height: 50vh;
-        color: white;
+    section{
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+        height: 60vh;
+        text-align: center;
+        padding: 30px;
     }
 
     footer{
         position: fixed;
         bottom: 0;
-        width: 100%;
-        height: 20vh;
-        background: black;
+        width:  100vw;
+        height: 10vh;
+        text-align: center;
     }
 
-    p{
-        color: white;
-        margin: 0;
-        position: absolute;
-        top: 40%;
-        -ms-transform: translateY(-40%);
-        transform: translateY(-40%);
-        left: 50%;
-        -ms-transform: translateX(-50%);
-        transform: translateX(-50%);
-        word-wrap: break-word;
-        text-align: center;
-        font-family: Blox2;
-        font-size: 1.5rem;
-    }
-    
     .logoContainer{
         width: 400px;
         min-height: 100%;
@@ -61,5 +44,9 @@ export const StyledWelcomeScreen = styled.div`
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    p{
+        color: white;
     }
 `;

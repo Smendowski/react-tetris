@@ -8,8 +8,8 @@ class App extends Component {
     this.state = { 
       isEmptyState: true,
       isContinueState: false,
-      // change to true if want to load from local storage - >
-      isLoadLocalStorage: true,
+      isLoadLocalStorage: localStorage.getItem("stageStored")
+        === null ? false : true,
       }
   }
 
@@ -21,17 +21,23 @@ class App extends Component {
     })
   }
 
-  LoadLocalStorage = () => {
+  StartNewGame = () => {
     this.setState({
-      isLoadLocalStorage: true
+      ...this.state,
+      isEmptyState: false,
+      isContinueState: true,
+      isLoadLocalStorage: false
     })
   }
 
+  // dodaj sprawdzanie czy gra jest over, jesli tak to nie daj mozliwosc kontynuacji
   render() {
     return (
       <div>  
         {this.state.isEmptyState && 
-          <WelcomeScreen continue = {this.ContinueVisiting} />
+          <WelcomeScreen continue = {this.ContinueVisiting}
+            startNew = {this.StartNewGame}
+            loadLocalStorage= { this.state.isLoadLocalStorage } />
           }  
 
         {this.state.isContinueState  && <Tetris loadLocalStorage
