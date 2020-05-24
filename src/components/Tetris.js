@@ -1,7 +1,7 @@
+// React, and built-in Hooks
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
-// Styles
+import styled from 'styled-components';
 import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
 
 // Stage Creator
@@ -60,7 +60,7 @@ const Tetris = ({ loadLocalStorage }) => {
             setLevel(0);
         }        
     }
-
+    
     const drop = () => {
         // Increase level when player has cleared 10 rows
         if (rows > (level + 1) * 10){
