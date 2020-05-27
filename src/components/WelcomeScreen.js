@@ -12,12 +12,14 @@ const WelcomeScreen  = props => {
         <StyledWelcomeContainer>
             <StyledWelcomeScreen>
                 <header>
-                    <div className = "logoContainer"/>
+                    <div className = "logoContainer">
+                        <p>Tetris v2</p>
+                    </div>
                 </header>
                 <section>
                 {props.loadLocalStorage ? (
                     <div>
-                        <p>It seems you didn't finish the previous game.
+                        <p className = "okej">It seems you didn't finish the previous game.
                         Do you want to continue or do you prefer to start a new one? </p>
                         <ContinueButton color="red" content = {`${ContinueTitle}`} action = {props.continue}/>
                         <ContinueButton color="green" content = {`${StartNewGameTitle}`} action = {props.startNew}>
@@ -33,7 +35,7 @@ const WelcomeScreen  = props => {
                 </section>
                 
                 <footer>
-                    <p>FOOTER APKI</p>
+                    <p>Custom Tetris verison has been designed and created by Mateusz Smendowski</p>
                 </footer>
 
             </StyledWelcomeScreen>

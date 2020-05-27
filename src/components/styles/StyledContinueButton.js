@@ -11,9 +11,10 @@ export const StyledContinueButton = styled.button`
     text-align: center;
     font-size: 30px;
     padding: 20px;
-    font-family: 'Press Start 2P', cursive;
     text-decoration: none;
     color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
     box-shadow: ${props => (props.color === 'green' ?
         'inset -4px -4px 0px 0px #4aa52e;' :
         'inset -4px -4px 0px 0px #8c2022')};
