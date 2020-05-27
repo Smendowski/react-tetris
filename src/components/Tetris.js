@@ -50,7 +50,6 @@ const Tetris = ({ loadLocalStorage }) => {
             rowsCleared = JSON.parse(localStorage.getItem("rowsClearedStored"));
             console.log(player.block);
         } else {
-            localStorage.clear();
             setStage(createStage());
             setDropTime(1000);
             resetPlayer();

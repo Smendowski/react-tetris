@@ -28,6 +28,7 @@ class App extends Component {
       isContinueState: true,
       isLoadLocalStorage: false
     })
+    localStorage.clear();
   }
 
   // dodaj sprawdzanie czy gra jest over, jesli tak to nie daj mozliwosc kontynuacji

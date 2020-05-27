@@ -48,5 +48,6 @@ export const StyledWelcomeScreen = styled.div`
 
     p{
         color: white;
+        font-size: 2rem;
     }
 `;
