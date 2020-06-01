@@ -7,6 +7,8 @@ export const StyledTetrisContainer = styled.div`
     background:  #000;
     background-size: cover;
     overflow-x: hidden;
+    margin-left: auto;
+    margin-right: auto;
 `;
 export const StyledTetris = styled.div`
     display: block;
@@ -15,27 +17,21 @@ export const StyledTetris = styled.div`
     margin: 0 auto;
     margin-left: auto;
     margin-right: auto;
-    max-width: 900px;
 
     aside {
         width: 100%
         display: block;
         padding: 0 20px;
 
-        @media ${device.mobileS}{
-            min-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
 
         @media ${device.mobileL}{
-            min-width: 300px;
+            max-width: 350px;
             margin-left: auto;
             margin-right: auto;
         }
 
         @media ${device.tablet}{
-            max-width: 500px;
+            min-width: 350px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -45,7 +41,12 @@ export const StyledTetris = styled.div`
         }
     }
 
+    @media ${device.mobileL}{
+        width: 100%;
+    }
+
     @media ${device.tablet}{
+        width: 50%;
         display: flex;
         align-items: flex-start;
     }

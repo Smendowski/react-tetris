@@ -16,30 +16,15 @@ export const StyledStage = styled.div`
     max-width: 25vw;
     background: #111;
 
-    @media ${device.mobileS}{
-        min-width: 63vw;
-        margin: 0 0 20px 0;
-        margin-left: auto;
-        margin-right: auto;
-
-        grid-template-rows: repeat(
-            ${props => props.height},
-            calc(63vw / ${props => props.width})
-        );
-        grid-template-columns: repeat(
-            ${props => props.width}, 1fr
-        );
-    }
-
     @media ${device.mobileL}{
-        min-width: 40vw;
+        min-width: 290px;
         margin: 0 0 20px 0;
         margin-left: auto;
         margin-right: auto;
 
         grid-template-rows: repeat(
             ${props => props.height},
-            calc(40vw / ${props => props.width})
+            calc(290px / ${props => props.width})
         );
         grid-template-columns: repeat(
             ${props => props.width}, 1fr
