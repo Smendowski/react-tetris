@@ -1,12 +1,18 @@
+<img src="https://github.com/Smendowski/react-tetris/blob/master/screenshoots/logo.png"
+     alt="Tetris Custom logo" height="100" width="90"
+     style="float: left; margin-right: 10px;">
 
 1. [ Description. ](#desc)
 2. [ Features ](#features)
 3. [ Technologies used ](#techno)
 4. [ Screen shots ](#screens)
-5. [ How to run it? ](#instr)
+5. [ How to run it locally? ](#instr)
 
 ## WWWiJS Custom Tetris by Mateusz Smendowski
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). <br/>
+Failed to deploy application on gitHub Pages (unsolved error):  -1 Point <br/>
+Estimated Score according to declared features: 9/10 Points.
+
 <a name="desc"></a>
 ## 1. Description
 A web application made as part of the project from WWW and script languages
@@ -34,6 +40,15 @@ A web application made as part of the project from WWW and script languages
 
 <a name="screens"></a>
 ## 4. Screen shoots
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/1.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/2.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/3.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/4.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/5.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/6.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/7.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/8.png)
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/9.png)
 
 <a name="instr"></a>
 ## 5. How to run it?
