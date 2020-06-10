@@ -3,10 +3,13 @@
 2. [ Features ](#features)
 3. [ Technologies used ](#techno)
 4. [ Screen shots ](#screens)
-5. [ How to run it? ](#instr)
+5. [ How to run it locally? ](#instr)
 
 ## WWWiJS Custom Tetris by Mateusz Smendowski
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Failed to deploy application on gitHub Pages (unsolved error):  -1 Point
+Estimated Score according to declared features: 9/10 Points.
+
 <a name="desc"></a>
 ## 1. Description
 A web application made as part of the project from WWW and script languages
@@ -34,6 +37,7 @@ A web application made as part of the project from WWW and script languages
 
 <a name="screens"></a>
 ## 4. Screen shoots
+![alt text](https://github.com/Smendowski/react-tetris/blob/master/screenshoots/1.png)
 
 <a name="instr"></a>
-## 5. How to run it?
+## 5. How to run it on localhost?
