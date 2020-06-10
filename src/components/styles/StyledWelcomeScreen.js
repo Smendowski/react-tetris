@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import logo from '../../img/logo.jpeg';
 import logo_filtered from '../../img/l.png';
 
 export const StyledWelcomeContainer = styled.div`
