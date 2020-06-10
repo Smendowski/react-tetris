@@ -52,13 +52,13 @@ A web application made as part of the project from WWW and script languages
 
 <a name="instr"></a>
 ## 5. How to run it?
-+ 0. Clone the GitHub repository
-+ [ Repository Clone Link ](https://github.com/Smendowski/react-tetris.git)
-+ 1. Install the lates verion of NodeJS on your computer <br/>
-+ [ NodeJS ](https://nodejs.org/en/download/)
-+ NodeJS gives a 'npm' tool - Node Package Manager
-+ 2. Navigate inside 'react-tetris' directory and run there a PowerShell.
-+ 3. Install npm and all dependencies:
-+ `npm install` to install node-modules, it might take some time.
-+ `npm install --save styled-components`
-+ 4. Run React-Application by 'npm run'
+#### 0. Clone the GitHub repository ####
+#### [ Repository Clone Link ](https://github.com/Smendowski/react-tetris.git) ####
+#### 1. Install the lates verion of NodeJS on your computer <br/> ####
+#### [ NodeJS ](https://nodejs.org/en/download/) ####
+#### NodeJS gives a 'npm' tool - Node Package Manager ####
+#### 2. Navigate inside 'react-tetris' directory and run there a PowerShell. ####
+#### 3. Install npm and all dependencies: ####
+#### `npm install` to install node-modules ####
+#### `npm install --save styled-components` #### 
+#### 4. Run React-Application by `npm run` ####
