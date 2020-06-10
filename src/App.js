@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Tetris from './components/Tetris';
 import WelcomeScreen from './components/WelcomeScreen';
 
+/**
+ * @desc root class'based component
+ */
 class App extends Component {
   constructor(props) {
     super(props)
@@ -13,6 +16,9 @@ class App extends Component {
       }
   }
 
+  /**
+   * @desc modify component state if user is willing to continue game
+   */
   ContinueVisiting = () => {
     this.setState({
       ...this.state,
@@ -21,6 +27,9 @@ class App extends Component {
     })
   }
 
+  /**
+   * @desc modify component state if user wants to start a new game
+   */
   StartNewGame = () => {
     this.setState({
       ...this.state,
@@ -31,7 +40,9 @@ class App extends Component {
     localStorage.clear();
   }
 
-  // dodaj sprawdzanie czy gra jest over, jesli tak to nie daj mozliwosc kontynuacji
+  /**
+   * @desc render component and return it's child components
+   */
   render() {
     return (
       <div>  
@@ -40,7 +51,6 @@ class App extends Component {
             startNew = {this.StartNewGame}
             loadLocalStorage= { this.state.isLoadLocalStorage } />
           }  
-
         {this.state.isContinueState  && <Tetris loadLocalStorage
           = { this.state.isLoadLocalStorage }/>}
       </div>
