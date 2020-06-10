@@ -1,3 +1,5 @@
+// defines devices' size, prepared to be used in 
+// media quieris to make web-application responsive
 const size = {
     mobileS: "320px",
     mobileM: "375px",
