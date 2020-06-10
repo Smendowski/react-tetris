@@ -1,68 +1,38 @@
+
+1. [ Description. ](#desc)
+2. [ Features ](#features)
+3. [ Technologies used ](#techno)
+4. [ Screen shots ](#screens)
+5. [ How to run it? ](#instr)
+
+## WWWiJS Custom Tetris by Mateusz Smendowski
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a name="desc"></a>
+## 1. Description
+A web application made as part of the project from WWW and script languages
+</br> on AGH University of Science and Technology.
 
-## Available Scripts
+<a name="features"></a>
+## 2. Features and functionality
++ Full playability, level, point and cleared-row tracking
++ Possibility to continute unfinished game
++ Using original Tetris's formula to calculate score
++ The higher level is the faster game becomes
++ Extension of the set of basic blocks with new ones
++ Rotation and Collision detection
 
-In the project directory, you can run:
 
-### `npm start`
+<a name="techno"></a>
+## 3. Technologies used
+* [ReactJS Framework](https://pl.reactjs.org/)
+* [Components] - functional and class-based
+* [Styled-Components] - separating the appearance of components from logic and their functionality
+* [Hooks] - usage of build-in and custom hooks to manage components' state more flexible
+* [JSX] - adding logic to HTML tags rendered while the component is rendering
+* [JSON] - to store metadata 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<a name="screens"></a>
+## 4. Screen shoots
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<a name="instr"></a>
+## 5. How to run it?
