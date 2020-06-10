@@ -1,25 +1,26 @@
-// Importing React, and built-in hooks
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { StyledTetrisContainer, StyledTetris} from './styles/StyledTetris';
 import { createStage, detectCollision } from '../gameParams';
 
-// Custom Hooks
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from  '../hooks/useStage';
 import { useInterval } from '../hooks/useInterval';
 import { useGameStats } from '../hooks/useGameStats'
 
-// Components
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
 
 // Tetris Component takes loadLocalStorage as a prop
+/**
+ * @desc Tetris functional components
+ * @param bool loadLocalStorage - indicates if the user wants to continue previous game
+ * @return rendered and styled tetris webapp page
+ */
 const Tetris = ({ loadLocalStorage }) => {
 
-    // Declaration and initialization - using custom Hooks
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
 
@@ -35,6 +36,9 @@ const Tetris = ({ loadLocalStorage }) => {
     const defaultDropTime = (1000 / (level + 1) + 200);
 
 
+    /**
+     * @desc start the game by loading components
+     */
     const startGame = () => {
         console.log(loadLocalStorage);
         // If there is any content added to the local storage 
@@ -63,7 +67,10 @@ const Tetris = ({ loadLocalStorage }) => {
         }        
     }
 
-    // Moving block - Left / Right
+    /**
+     * @desc moves player's block to the left/right if possible
+     * @param int direction - rotation direction
+     */
     const movePlayer = (direction) => {
         // If there is no collision detected then move and
         // update block's position in the main stage
@@ -72,7 +79,10 @@ const Tetris = ({ loadLocalStorage }) => {
         }
     }
 
-    // Moving block - down
+    /**
+     * @desc drops down player's block if possible
+     * @param number dropTime - time interval btwn droping
+     */
     const drop = (dropTime) => {
         // Increase the level when player has cleared 10 rows
         if (rows > (level + 1) * 10){
@@ -94,16 +104,21 @@ const Tetris = ({ loadLocalStorage }) => {
         }
     }
 
+    /**
+     * @desc invokes drop function
+     */
     const dropPlayer = () => {
         // hold the default game clock while pressing the "down" key
         // to avoid the double fall effect of the block
         setDropTime(null);
         drop(defaultDropTime);
-        console.log(player.block);
     }
 
 
-    // Start interval again after user release a downkey
+    /**
+     * @desc starts interval again after user release a downkey
+     * @param number keyCode - code of released key
+     */
     const keyUp = ({keyCode}) => {
         if (!gameOver){
             if (keyCode === 40) {
@@ -112,7 +127,10 @@ const Tetris = ({ loadLocalStorage }) => {
         }
     }
     
-    // Take keyCode and make a movement
+    /**
+     * @desc makes a movement
+     * @param number keyCode - pressed keyboard's key keyCode
+     */
     const move = ({ keyCode }) => {
         // Stopm moving if the game is lost
         if (!gameOver) {
@@ -132,9 +150,12 @@ const Tetris = ({ loadLocalStorage }) => {
         }
     }
 
-    // Custom Hook usage - every 'dropTime' value passed as a dependency to
-    // useInterval, drop the block and store components' state to the local
-    // storage
+    /**
+     * @desc Custom Hook usage - every 'dropTime' value passed as a 
+     * dependency to useInterval, drop the block and store components'
+     *  state to the local storage
+     * @dependency number dropTime - runs code every interval
+     */
     useInterval(() => {
         drop(defaultDropTime);
         localStorage.setItem("dropTimeStored", JSON.stringify(dropTime));
@@ -147,8 +168,7 @@ const Tetris = ({ loadLocalStorage }) => {
         localStorage.setItem("gameOverStored", JSON.stringify(gameOver));
     }, dropTime)
 
-    
-    // return Component - JSX syntax
+
     return (
         <StyledTetrisContainer role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp = {keyUp}>
             <StyledTetris>
