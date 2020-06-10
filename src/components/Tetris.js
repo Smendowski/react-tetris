@@ -63,17 +63,6 @@ const Tetris = ({ loadLocalStorage }) => {
         }        
     }
 
-    const resetGame = () => {
-        // Start game from scratch
-        setStage(createStage());
-        setDropTime(1000);
-        resetPlayer();
-        setGameOver(false);
-        setScore(0);
-        setRows(0);
-        setLevel(0);
-    }
-
     // Moving block - Left / Right
     const movePlayer = (direction) => {
         // If there is no collision detected then move and
@@ -174,7 +163,6 @@ const Tetris = ({ loadLocalStorage }) => {
                         <Display text={`Level: ${level}`}/>
                     </div>)}
                     <StartButton content="Start Game" callback={startGame}/>
-                    <StartButton content="Reset Game" callback={resetGame}/>
                 </aside>
             </StyledTetris>
         </StyledTetrisContainer>
