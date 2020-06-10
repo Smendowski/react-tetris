@@ -1,23 +1,28 @@
-
-// useState and useCallback - standart React Hooks
 import { useState, useCallback } from 'react';
 import { BLOCKS, randomBlock } from '../blocks';
 import { STAGE_WIDTH, detectCollision } from '../gameParams';
 
+
+/**
+ * @desc player state management
+ * @return player and it's setter, update position function,
+ * reseting and rotating function
+ */
 export const usePlayer = () =>{
     const [player, setPlayer ] = useState({
         position: {x:0, y:0},
         block: BLOCKS[0].shape,
         collided: false,
     });
-    // Longest form:
-    // const playerState = useState();
-    // const player = playerState[0];
-    // cosnt setPlayer = playerState[1];
-
+    
+    /**
+     * @desc rotate player's block in the given direction
+     * @param tetromino current player block object - shape + color
+     * @param direction defines left ( < 0) or right ( > 0) block rotation
+     * @return rotated tetromino if direction !== 0
+     */
     const rotate = (tetromino, direction) => {
-        // direction >0 right rotation
-        // TODO: rotation, matrix transposition.
+        // Rotation, block square matrix structure transposition
         const rotatedTetromino = tetromino.map((_, index) =>
             tetromino.map(column => column[index]),);
         // Reverse each row to get a rotaded tetromino
@@ -26,20 +31,26 @@ export const usePlayer = () =>{
         return rotatedTetromino.reverse();
     }
 
+    /**
+     * @desc rotate player block directly on the stage
+     * @param stage current game stage
+     * @param direction defines left or right block rotation
+     * @return roteted tetromino if block does not collide with 
+     * stage or others merged tetrominos
+     */
     const rotatePlayer = (stage, direction) => {
         const playerClone = JSON.parse(JSON.stringify(player));
         playerClone.block = rotate(playerClone.block, direction);
 
-        // Basic checker - if we collided, we have to
-        // cancel rotation process and by dint of offset,
-        // separate block and collided object with space
+        // if block has collided, cancel rotation process
+        // and by dint of offset, separate block and collided object
+        // with space
         const position = playerClone.position.x;
         let offset = 1;
         while(detectCollision(playerClone, stage, {x: 0, y:0})){
             playerClone.position.x += offset;
             offset = -(offset + (offset > 0 ? 1 : -1));
             if (offset > playerClone.block[0].length){
-                // If block after rotation 
                 rotate(playerClone.tetromino, -direction);
                 playerClone.position.x = position;
                 return;
@@ -48,6 +59,10 @@ export const usePlayer = () =>{
         setPlayer(playerClone);
     }
 
+    /**
+     * @desc updates (sets) player's block position
+     * @object block's x and y coordinates and if collided status
+     */
     const updatePlayerPosition = ({x, y, collided}) => {
         setPlayer(previous => ({
             ...previous,
@@ -56,10 +71,11 @@ export const usePlayer = () =>{
         }))
     }
 
-    // Starting player's block position
+    /**
+     * @desc resets player block - top middle starting position
+     */
     const resetPlayer = useCallback(() => {
         setPlayer({
-            // Top Middle positioning
             position: {x: STAGE_WIDTH / 2 - 2, y: 0},
             block: randomBlock().shape,
             collided: false,

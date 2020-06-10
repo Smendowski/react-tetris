@@ -1,6 +1,11 @@
 import { useState, useEffect, useCallback} from 'react';
 
-export const useGameStats = rowsCleared => {
+/**
+ * @desc game parameters' state management
+ * @param rowsCleared how many rows has been cleared by the player
+ * @return getters and setters for score, rows, level
+ */
+export const useGameStats = (rowsCleared) => {
     const [score, setScore] = useState(0);
     const [rows, setRows] = useState(0);
     const [level, setLevel] = useState(0);
@@ -16,9 +21,6 @@ export const useGameStats = rowsCleared => {
             setRows(previous => previous + rowsCleared);
         } 
     }, [level, linePoints, rowsCleared])
-    // Use callback, takes dependency array
-
-
 
     // useEffect usage to fire off code automatically 
     useEffect(() => {
