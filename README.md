@@ -25,11 +25,12 @@ A web application made as part of the project from WWW and script languages
 <a name="techno"></a>
 ## 3. Technologies used
 * [ReactJS Framework](https://pl.reactjs.org/)
-* [Components] - functional and class-based
-* [Styled-Components] - separating the appearance of components from logic and their functionality
-* [Hooks] - usage of build-in and custom hooks to manage components' state more flexible
-* [JSX] - adding logic to HTML tags rendered while the component is rendering
-* [JSON] - to store metadata 
+* Components - functional and class-based
+* Styled-Components - separating the appearance of components from logic and their functionality
+* Hooks - usage of build-in and custom hooks to manage components' state more flexible
+* JSX - adding logic to HTML tags rendered while the component is rendering
+* JSON - to store metadata 
+* LocalStorage / cookies - to enable game continuation
 
 <a name="screens"></a>
 ## 4. Screen shoots
